@@ -1,13 +1,13 @@
 {
   "scripts": {
-    "install-all": "npm install && jspm install && node scripts/linkJspmToLocal.js",
     "build": "jspm build src/App.js www/bundle.js",
     "postbuild": "echo Build finished at `date`",
-    "watch": "npm run build -- -wid",
     "gen-keystore": "keytool -genkey -v -keystore release.keystore -alias release -keyalg RSA -keysize 2048 -validity 10000",
     "gen-icons": "node ./scripts/generateIcons.js",
     "copy-apk": "mkdir -p build && cp platforms/android/build/outputs/apk/android-armv7-release.apk build/android-armv7-release.apk",
-    "release": "npm run build -- --minify --skip-source-maps  && npm run gen-icons && cordova build --release && npm run copy-apk && echo Release done at `date`"
+    "release": "npm run build -- --minify --skip-source-maps  && npm run gen-icons && cordova build --release && npm run copy-apk && echo Release done at `date`",
+    "postinstall": "jspm i && npm run build",
+    "start": "node scripts/webserver.js"
   },
   "jspm": {
     "name": "nl.bizboard.arva.seed",
@@ -101,7 +101,8 @@
     }
   },
   "devDependencies": {
-    "jspm": "^0.17.0-beta.22",
+    "express": "^4.15.2",
+    "jspm": "0.17.0-beta.31",
     "jspm-git": "^0.5.0-beta.3",
     "splashicon-generator": "^0.2.7"
   }
