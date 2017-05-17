@@ -1,2 +1,2 @@
 [config]
-command = .\scripts\azure_deploy.cmd
+command = scripts/azure_deploy.cmd
