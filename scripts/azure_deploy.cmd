@@ -61,7 +61,7 @@ IF !ERRORLEVEL! NEQ 0 goto error
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd %DEPLOYMENT_TARGET%
   call npm install
-  call node node_modules/.bin/jspm install
+  call node node_modules/jspm/cli.js install
   call npm run build
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
