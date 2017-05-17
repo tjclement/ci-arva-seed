@@ -61,6 +61,8 @@ IF !ERRORLEVEL! NEQ 0 goto error
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd %DEPLOYMENT_TARGET%
   call npm install
+  call npm config set strict-ssl false
+  call node node_modules/jspm/cli.js config registries.bitbucket.baseurl https://bitbucket.org/ && node node_modules/jspm/cli.js config registries.bitbucket.auth authbase64stringhere && node node_modules/jspm/cli.js config registries.bitbucket.version 1.0 && node node_modules/jspm/cli.js config registries.bitbucket.handler jspm-git
   call node node_modules/jspm/cli.js install
   call npm run build
   IF !ERRORLEVEL! NEQ 0 goto error
